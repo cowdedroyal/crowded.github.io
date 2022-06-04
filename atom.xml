@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>crowded.github.io</id>
+    <title>wtw</title>
+    <updated>2022-06-04T06:54:02.137Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="crowded.github.io"/>
+    <link rel="self" href="crowded.github.io/atom.xml"/>
+    <subtitle>一个很懒的程序员</subtitle>
+    <logo>https://p.qlogo.cn/hy_personal/3e28f14aa0516842864b734fee902c187a977e44ece31c1651306e6a7757ed07/0.png</logo>
+    <icon>https://p.qlogo.cn/hy_personal/3e28f14aa0516842864b734fee902c187a977e44ece31c1651306e6a7757ed07/0.png</icon>
+    <rights>All rights reserved 2022, wtw</rights>
+    <entry>
+        <title type="html"><![CDATA[Fight]]></title>
+        <id>https://crowded.github.io/fight</id>
+        <link href="https://crowded.github.io/fight"/>
+        <updated>2022-06-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[we learn fighting
+]]></summary>
+        <content type="html"><![CDATA[<p>we learn fighting</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C语言生成随机数]]></title>
+        <id>https://crowded.github.io/C语言产生随机数的方法_c语言随机数</id>
+        <link href="https://crowded.github.io/C语言产生随机数的方法_c语言随机数"/>
+        <updated>2022-06-03T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[原理概述
+在C语言中,rand()函数可以用来产生随机数，但是这不是真真意义上的随机数，是一个伪随机数，是根据一个数，我们可以称它为种子，为基准以某个递推公式推算出来的一系数，当这系列数很大的时候，就符合正态公布，从而相当于产生了随机数，但...]]></summary>
+        <content type="html"><![CDATA[<h2 id="原理概述">原理概述</h2>
+<p>在C语言中,rand()函数可以用来产生<a href="https://so.csdn.net/so/search?q=%E9%9A%8F%E6%9C%BA%E6%95%B0&amp;spm=1001.2101.3001.7020">随机数</a>，但是这不是真真意义上的随机数，是一个伪随机数，是根据一个数，我们可以称它为种子，为基准以某个递推公式推算出来的一系数，当这系列数很大的时候，就符合正态公布，从而相当于产生了随机数，但这不是真正的随机数，当计算机正常开机后，这个种子的值是定了的，除非你破坏了系统，为了改变这个种子的值，C提供了srand()函数，它的原型是：</p>
+<pre><code>void srand(int a)
+</code></pre>
+<p>rand()会返回一随机数值，范围在0至RAND_MAX 间。返回0至RAND_MAX之间的随机数值，RAND_MAX定义在stdlib.h，(其值至少为32767)，要看你定义的变量类型，int整形的话就是32767。 在调用此函数产生随机数前，必须先利用srand()设好随机数种子，如果未设随机数种子，rand()在调用时会自动设随机数种子为1。一般用for语句来设置种子的个数。</p>
+<h2 id="通用的随机数发生器">通用的随机数发生器</h2>
+<p>函数名：rand<br>
+功能：随机数发生器<br>
+用法：</p>
+<pre><code>void rand(void)
+</code></pre>
+<p>程序例：</p>
+<pre><code>//   Date:2020/4/10
+//   Author:xiezhg5
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main(void)
+{
+int i;
+printf(&quot;Ten rand number from 0 to 99\n\n&quot;);
+for(i=0;i&lt;10;i++)
+printf(&quot;%d\n&quot;,rand()%100);
+return 0;
+}
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200410102932666.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NjQ1NjQx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<h2 id="如何产生设定范围的随机数">如何产生设定范围的随机数</h2>
+<p>从X到Y，有Y-X+1个数，所以要产生从X到Y的数，只需要这样写<br>
+<strong>k=rand()%(Y-X+1)+X</strong><br>
+程序例：</p>
+<h2 id="产生0~32767之间的随机数">产生0~32767之间的随机数：</h2>
+<pre><code>//   Date:2020/4/10
+//   Author:xiezhg5
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+int main(void)
+{
+int i;
+srand((unsigned)time(NULL));
+for(i=0;i&lt;10;i++)
+printf(&quot;%d\n&quot;,rand());
+return 0;
+}
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200410100835773.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NjQ1NjQx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<h2 id="产生0~1之间的随机数">产生0~1之间的随机数：</h2>
+<pre><code>//   Date:2020/4/10
+//   Author:xiezhg5
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+int main(void)
+{
+int i;
+srand((unsigned)time(NULL));
+for(i=0;i&lt;10;i++)
+printf(&quot;%5.2f\n&quot;,rand()/32767.0);
+return 0;
+}
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200410101049625.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NjQ1NjQx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<h2 id="产生0~100之间的随机数">产生0~100之间的随机数：</h2>
+<pre><code>//   Date:2020/4/10
+//   Author:xiezhg5
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+int main(void)
+{
+int i;
+srand((unsigned)time(NULL));
+for(i=0;i&lt;10;i++)
+printf(&quot;%d\n&quot;,rand()%100+1);
+return 0;
+}
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200410101211133.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NjQ1NjQx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<h2 id="产生不重复的随机数">产生不重复的随机数：</h2>
+<p>两种思路：</p>
+<pre><code>//   Date:2020/4/10
+//   Author:xiezhg5
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+swap(int *pm,int *pn)   //必须用指针进行交换
+{
+int temp;
+temp=*pm;
+*pm=*pn;
+*pn=temp;
+}
+int main(void)
+{
+int i,a[513];                   //int *pm,*pn
+    srand((unsigned)time(NULL));   //定义这个可以产生不同的随机数
+    for(i=1;i&lt;=512;i++)
+    {
+    a[i]=i;
+    printf(&quot;%4d&quot;,a[i]);
+    }
+    for(i=512;i&gt;=1;i--)
+    {
+    swap(&amp;a[i],&amp;a[rand()%i+1]);  //加1是从1到i的随机，不包含0
+    }
+    printf(&quot;\n&quot;);
+    for(i=1;i&lt;=64;i++)
+    printf(&quot;%4d&quot;,a[i]);
+    getch();
+    return 0;
+}
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200410102259136.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NjQ1NjQx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
+<pre><code>//   Date:2020/4/10
+//   Author:xiezhg5
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+int main(void)
+{
+int a[100]={0};
+int i,m;
+for(i=1;i&lt;=99;i++)
+printf(&quot;%4d&quot;,a[i]);
+srand((unsigned)time(NULL));
+for(i=1;i&lt;=99;i++)
+{
+while(a[m=rand()%100+1]);
+a[m]=i;
+
+}
+for(i=1;i&lt;=99;i++)
+printf(&quot;%4d&quot;,a[i]);
+getch();
+return 0;
+}
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200410102802750.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NjQ1NjQx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+关于C语言随机数可以看看这道题：<a href="https://blog.csdn.net/qq_45645641/article/details/105289876">https://blog.csdn.net/qq_45645641/article/details/105289876</a></p>
+]]></content>
+    </entry>
+</feed>
